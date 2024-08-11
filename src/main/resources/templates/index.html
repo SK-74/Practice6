@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Practice6</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/dist/css/bootstrap.min.css}"> 
+</head>
+<body>
+	<div class="container">
+		<form class="m-2" th:action="@{/judge}" method="get" th:object="${request}" >
+			<div class="row">
+				<div class="col-2">
+					<!-- inputの内容がクエリパラメータとなって送信される -->
+					<input type="text" class="form-control" th:name="value" th:value="*{value}">
+					<span class="text-danger"
+					      th:if="${#fields.hasErrors('value')}"
+					      th:errors="*{value}" >
+					</span>
+				</div>
+				<div class="col-2">
+					<input type="submit" class="btn btn-primary" value="送信">
+				</div>
+			</div>
+		</form>
+
+		<th:block th:if="${message != null}">
+			<div class="alert alert-primary display-1 text-center">
+				<span th:text="|${message}|"></span>
+			</div>
+		</th:block>
+	</div>
+</body>
+</html>
